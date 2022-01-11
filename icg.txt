@@ -1,0 +1,32 @@
+s=input("Enter the expression:")
+a=list(s)
+t=['t1','t2','t3','t4','t5','t6','t7','t8','t9']
+j=0
+f=1
+while f==1:
+	for i in range(0,len(a)):
+		if a[i]=='*' or a[i]=='/':
+			print(t[j],'=',a[i-1],a[i],a[i+1])
+			a[i]=t[j]
+			j=j+1
+			del(a[i+1])
+			del(a[i-1])
+			break
+		f=0
+	for i in range(0,len(a)):
+		if a[i]=='*' or a[i]=='/':
+			f=1
+	f=1
+	while(f==1):
+		for i in range(0,len(a)):
+			if a[i]=='+' or a[i]=='-':
+				print(t[j],'=',a[i-1],a[i],a[i+1])
+				a[i]=t[j]
+				j=j+1
+				del(a[i+1])
+				del(a[i-1])
+				break
+			f=0
+		for i in range(0,len(a)):
+			if a[i]=='+' or a[i]=='-':
+				f=1
