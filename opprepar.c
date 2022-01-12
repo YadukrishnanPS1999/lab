@@ -1,12 +1,10 @@
 #include<stdio.h>
 #include<string.h>
-#include<stdlib.h>
 
 char input[50];
 int i=0;
 char lasthandle[6], stack[50], handles[][5]={"E*E","E+E","i"};
-
-int top=0, l;
+int top=0;
 
 int precedence(char c)
 {
@@ -19,13 +17,11 @@ int precedence(char c)
     }
 }
 
-
 int shift()
 {
     stack[++top] = input[i++];
     stack[top+1] = '\0';
 }
-
 
 int reduce()
 {
@@ -48,10 +44,7 @@ int reduce()
             {
                 stack[top-t+1] = 'E';
                 top = top-t+1;
-                if(strcmp(handles[i], ")E(") == 0)
-                    strcpy(lasthandle, "(E)");
-                else
-                    strcpy(lasthandle, handles[i]);
+                strcpy(lasthandle, handles[i]);
                 stack[top+1]='\0';
                 return 1;//successful reduction
             }
@@ -60,25 +53,13 @@ int reduce()
     return 0;
 }
 
-
-
-void dispstack()
-{
-    for(int j=0; j<=top; j++)
-        printf("%c", stack[j]);
-}
-
-
-
 void dispinput()
 {
-    for(int j=i; j<l; j++)
+    for(int j=i; j<strlen(input); j++)
         printf("%c", input[j]);
 }
 
-
-
-void main()
+int main()
 {
     int j;
     printf("\nEnter the string\n");
