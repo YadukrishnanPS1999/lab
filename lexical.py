@@ -2,13 +2,9 @@ data = {"int":"keyword","void":"keyword","(":"character",")":"character","+":"op
 f = open("code.txt")
 a=0
 resultKey = []
-resID = []
-resNum = []
-resChar = []
 for line in f:
     for k in data.keys():
-        str = line.split() 
-        for word in str:
+        for word in line.split():
             if(word == k):
                 str = word + " is a " + data[k]
                 flag = 0
